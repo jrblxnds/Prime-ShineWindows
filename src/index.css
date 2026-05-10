@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0B1F3A;
+  --color-rich-blue: #2563A8;
+  --color-bright-blue: #3B82C4;
+  --color-sky-blue: #D8ECFF;
+  --color-pale-blue: #EEF7FF;
+  --color-warm-cream: #FFF8EA;
+  --color-gray-blue: #E8F1F8;
+  --color-gold: #D4B24C;
+  --color-dark-text: #142033;
+  --color-muted-text: #5D6B7A;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", var(--font-sans);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Shadcn Overrides */
+  --color-background: #EEF7FF;
+  --color-foreground: #142033;
+  --color-primary: #2563A8;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #D8ECFF;
+  --color-secondary-foreground: #0B1F3A;
+  --color-muted: #E8F1F8;
+  --color-muted-foreground: #5D6B7A;
+  --color-accent: #D8ECFF;
+  --color-accent-foreground: #2563A8;
+  --color-border: #D8ECFF;
+  --color-input: #D8ECFF;
+  --color-ring: #3B82C4;
+  --radius: 1rem;
+}
+
+@layer base {
+  body {
+    @apply bg-pale-blue text-dark-text font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight font-bold;
+  }
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.sparkle-text {
+  @apply relative inline-block;
+}
+
+.sparkle-text::after {
+  content: '✨';
+  @apply absolute -top-2 -right-4 text-sm animate-pulse;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-pale-blue;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-bright-blue/20 rounded-full hover:bg-bright-blue/40 transition-colors;
+}
+
+/* Big Calendar luxury overrides */
+.rbc-calendar {
+  @apply font-sans;
+  border: none !important;
+}
+
+.rbc-event {
+  @apply rounded-xl px-3 py-1 shadow-sm;
+  border: none !important;
+}
+
+.rbc-today {
+  background-color: rgba(216, 236, 255, 0.4) !important;
+}
+
+.rbc-header {
+  @apply py-3 font-semibold uppercase text-xs tracking-wider text-muted-text border-b border-sky-blue;
+  border-bottom: 2px solid var(--color-sky-blue) !important;
+}
+
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";

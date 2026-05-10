@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "A window cleaning service request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "address": { "type": "string" },
+        "serviceType": { 
+          "type": "string",
+          "enum": ["Exterior Window Cleaning", "Screen Cleaning", "Track/Sill Cleaning", "Hard Water Stain Removal", "Multiple Services", "Commercial Request"]
+        },
+        "propertyType": {
+          "type": "string",
+          "enum": ["Small One-Story Home", "Larger Two-Story Home", "Townhouse", "Condo Exterior Access", "Commercial Property", "Other"]
+        },
+        "preferredDate": { "type": "string", "format": "date" },
+        "preferredTime": { "type": "string" },
+        "dateTimeKey": { "type": "string", "description": "Combined YYYY-MM-DDHH:mm for double-booking checks" },
+        "notes": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "Confirmed", "Completed", "Cancelled"]
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "phone", "email", "address", "serviceType", "propertyType", "preferredDate", "preferredTime", "dateTimeKey", "status"]
+    },
+    "BlockedSlot": {
+      "title": "Blocked Slot",
+      "description": "Prevents double bookings for a specific time slot",
+      "type": "object",
+      "properties": {
+        "dateTimeKey": { "type": "string" },
+        "bookingId": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["dateTimeKey", "bookingId", "status"]
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of service requests"
+    },
+    "/blockedSlots/{dateTimeKey}": {
+      "schema": "BlockedSlot",
+      "description": "Collection of blocked time slots"
+    }
+  }
+}
